@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pundit</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <section id="header">
+  <div class="head-area">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="http://eventsnorthern.files.wordpress.com/2011/09/blog-icon-200.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav ">
+            <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Home
+              </a>
+              <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item active  text-uppercase ">
+              <a class="nav-link" href="#FEATURES">FEATURES</a>
+            </li>
+            <li class="nav-item active  text-uppercase ">
+              <a class="nav-link" href="#CONTACT">CONTACT</a>
+            </li>
+            <li class="nav-item active   text-white">
+              <% if user_signed_in?%>
+              <%= current_user.email %>
+              <%= link_to "Log Out" , destroy_user_session_path, method: :delete, :class=>"btn btn-primary btn-lg active text-uppercase" %>
+              <% else %>
+              <%= link_to "Sign Up", new_user_registration_path ,:class=>"btn btn-primary btn-lg active text-uppercase" %>
+              <%= link_to "Login", new_user_session_path,:class=>"btn btn-primary btn-lg active text-uppercase"%>
+              <% end %>
+              
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+</section>
+
+<%= yield %>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" ></script>
+  </body>
+</html>
