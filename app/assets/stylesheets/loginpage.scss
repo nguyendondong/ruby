@@ -1,4 +1,13 @@
+
 #loginpage{
     padding-top: 60px;
-   
+    .actions{
+        .btn-primary{
+            margin: 0 !important;
+        }
+    }
+    .form-group{
+        width: 50%;
+    }
+    
 }

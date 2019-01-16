@@ -29,6 +29,7 @@
       <tr>
         <td><%= post.user_ID %></td>
         <td><%= post.body %></td>
+        <td><%= post.title %></td>
         <td><%= link_to 'Show', post if policy(Post).show? %></td>
         <td><%= link_to 'Edit', edit_post_path(post) if policy(Post).edit? %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } if policy(Post).destroy?%></td>

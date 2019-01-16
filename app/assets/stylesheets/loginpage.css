@@ -1,4 +1,12 @@
 #loginpage {
   padding-top: 60px;
 }
+
+#loginpage .actions .btn-primary {
+  margin: 0 !important;
+}
+
+#loginpage .form-group {
+  width: 50%;
+}
 /*# sourceMappingURL=loginpage.css.map */

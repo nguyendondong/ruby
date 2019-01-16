@@ -1,4 +1,12 @@
 #signuppage {
   padding-top: 60px;
 }
+
+#signuppage .actions .btn-primary {
+  margin: 0 !important;
+}
+
+#signuppage .form-group {
+  width: 50%;
+}
 /*# sourceMappingURL=signuppage.css.map */

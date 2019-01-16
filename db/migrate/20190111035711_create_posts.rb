@@ -3,7 +3,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     create_table :posts do |t|
       t.integer :user_ID
       t.text :body
-
       t.timestamps
     end
   end
