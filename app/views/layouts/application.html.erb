@@ -43,7 +43,8 @@
             </li>
             <li class="nav-item active   text-white">
               <% if user_signed_in?%>
-              <%= current_user.email %>
+              <%= current_user.id %>
+
               <%= link_to "Log Out" , destroy_user_session_path, method: :delete, :class=>"btn btn-primary btn-lg active text-uppercase" %>
               <% else %>
               <%= link_to "Sign Up", new_user_registration_path ,:class=>"btn btn-primary btn-lg active text-uppercase" %>

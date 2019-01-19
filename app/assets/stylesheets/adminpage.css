@@ -2,4 +2,8 @@
   background-size: cover;
   padding-top: 60px;
 }
+
+#adminpage a {
+  color: white !important;
+}
 /*# sourceMappingURL=adminpage.css.map */

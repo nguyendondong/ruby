@@ -9,10 +9,11 @@ class PostsController < ApplicationController
     authorize @posts
     if current_user && current_user.admin?
       render 'users/admin'
-    else
-      render 'posts/page'
-    end
-
+  
+    if current_user && current_user.guest?
+        render 'posts/index'  
+  end
+  end
   end
 
   # GET /posts/1
@@ -26,16 +27,16 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     authorize @post
+    
   end
 
   # GET /posts/1/edit
   def edit
-    authorize @post
-   
+     authorize @post
   end
 
-  # POST /posts
-  # POST /posts.json
+  # POST /postsposts
+  # POST /postsposts
   def create
     @post = Post.new(post_params)
     authorize @post
@@ -56,8 +57,8 @@ class PostsController < ApplicationController
     authorize @post
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        format.html { redirect_to @post, notice: 'Product was successfully updated.' }
+        format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -84,6 +85,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_ID, :body)
+      params.require(:post).permit(:user_id,:title, :body)
     end
 end

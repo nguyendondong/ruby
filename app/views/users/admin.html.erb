@@ -25,19 +25,31 @@
     </thead>
     <tbody>
     <% @posts.each do |post| %>
+        <% if !post.user.admin? || post.user == current_user %>
         <tr>
-          <td><%= post.user_ID %></td>
+          <td><%= post.user_id %></td>
           <td><%= post.body %></td>
-          <td><%= post.Title %></td>
-          <td><%= link_to 'Show', post if policy(Post).show? %></td>
-          <td><%= link_to 'Edit', edit_post_path(post) if policy(Post).edit? %></td>
-          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } if policy(Post).destroy?%></td>
+          <td><%= post.title %></td>
+          <td><button type="button" class="btn btn-warning"><%= link_to 'Show', post if policy(post).show? %> </button></td>
+          <%if policy(post).edit? %>
+          <td><button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_post_path(post)  %> </button></td>
+          <% end %>
+          <% if policy(post).destroy? %>
+          <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
+        <% end %>
       <% end %>
       
     </tbody>
   </table>
+  <br>
+<%if policy(Post).new? %>
+<%= link_to 'New Post', new_post_path %>
+<%end%>
 </div>
+</div>
+
 
 
     <!-- Optional JavaScript -->
@@ -47,3 +59,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+</div>

@@ -8,45 +8,42 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    </head>
-    <body>
-    <div class="container h-100 pad-t text-white">
+
+    <title>Admin</title>
+  </head>
 <p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User id</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user_ID %></td>
-        <td><%= post.body %></td>
-        <td><%= post.title %></td>
-        <td><%= link_to 'Show', post if policy(Post).show? %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) if policy(Post).edit? %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } if policy(Post).destroy?%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="container h-100  ">
+<h3>Publish your passions, your way</h3>
+<p class="color-p">Create a unique and beautiful blog. It’s easy and free.
+</p>
 <%if policy(Post).new? %>
-<%= link_to 'New Post', new_post_path %>
+<button type="button" class="btn btn-info text-white"><%= link_to 'New Post', new_post_path %></button>
 <%end%>
+<div class="row">
+<div class= "col-12">
+<ul class="list-group list-group-flush">
+<% @posts.each do |post| %> 
+  <li class="list-group-item ">
+  <label for="comment">User ID: </label> 
+    <%= post.user_id %></li>
+  <li class="list-group-item">
+  <label for="comment">Title </label> <%= post.title %></li>
+  <li class="list-group-item">
+  <div class="form-group">
+  <label for="comment">Body:</label>
+     <%= post.body %>
+</div></li>
+<li class="list-group-item ">
+<button type="button" class="btn btn-warning"> <%= link_to 'Show', post if policy(post).show? %></button>
+<%if policy(post).edit? %>
+<button type="button" class="btn btn-info "><%= link_to 'Edit', edit_post_path(post) %></button>
+<%end%>
+</li>
+  <% end %>
+</ul>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
+</div>
+</div>
 </html>
 </div>
 
