@@ -9,8 +9,16 @@
 <div class="form-group">
 <label for="comment">Body:</label>
  <%= @post.body %>
+ </div></li>
+ <li class="list-group-item">
+ <div class="form-group">
+<label>IMG:</label>
+ <%= image_tag  @post.avatar.url.to_s %>
+ </div>
+ </li>
+
 </ul>
- <%if policy(Post).edit?%>
+ <%if policy(@post).edit?%>
  <button type="button" class="btn btn-danger "><%= link_to 'Edit', edit_post_path(@post) %> </button> 
  <% end %>
  <button type="button" class="btn btn-danger"><%= link_to 'Back', posts_path %></button>

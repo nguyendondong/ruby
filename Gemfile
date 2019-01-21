@@ -64,3 +64,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pundit', '~> 1.1'
 gem 'devise', '~> 4.5'
 gem 'carrierwave', '~> 1.0'
+gem "mini_magick"

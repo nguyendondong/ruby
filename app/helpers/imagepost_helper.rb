@@ -1,0 +1,2 @@
+module ImagepostHelper
+end

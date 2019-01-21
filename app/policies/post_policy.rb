@@ -18,15 +18,14 @@ class PostPolicy < ApplicationPolicy
     end
 
     def edit?
-        if user.present? && (user.admin? || user == post.user)
+        if user.present? && user == post.user
             return true
-        end
+        end  
     end
 
     def update?
-        if user.present? && (user.admin? || user == post.user)
-            return true
-        end
+        return true if user.present? && user.admin?  
+        user.present? && user == post.user
     end
     private
     def post
