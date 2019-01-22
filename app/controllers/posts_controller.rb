@@ -76,6 +76,14 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    def DEL
+     @post.avatars.destroy
+     authorize @post
+      respond_to do |format|
+        format.html {redirect_to avatars_url(img), notice: 'Item photo was successfully deleted.'}
+        format.json { head :no_content }
+      end
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -85,6 +93,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id,:title, :body ,:avatar)
+      params.require(:post).permit(:user_id,:title, :body , {avatars: [] })
     end
+
 end

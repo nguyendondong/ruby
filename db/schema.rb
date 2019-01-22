@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_21_085318) do
+ActiveRecord::Schema.define(version: 2019_01_22_020000) do
 
   create_table "imageposts", force: :cascade do |t|
     t.string "item_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_01_21_085318) do
     t.datetime "updated_at", null: false
     t.text "title"
     t.string "avatar"
+    t.json "avatars"
   end
 
   create_table "users", force: :cascade do |t|

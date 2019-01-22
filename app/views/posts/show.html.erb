@@ -1,3 +1,4 @@
+<div class="showpage">
 <p id="notice"><%= notice %></p>
 
 <ul class="list-group list-group-flush  " >
@@ -13,7 +14,9 @@
  <li class="list-group-item">
  <div class="form-group">
 <label>IMG:</label>
- <%= image_tag  @post.avatar.url.to_s %>
+<% @post.avatars.each do |a| %>
+ <%= image_tag  a.url.to_s, style: "max-width: 400px; max-height: 400px"  %>
+ <%end%>
  </div>
  </li>
 
@@ -22,3 +25,4 @@
  <button type="button" class="btn btn-danger "><%= link_to 'Edit', edit_post_path(@post) %> </button> 
  <% end %>
  <button type="button" class="btn btn-danger"><%= link_to 'Back', posts_path %></button>
+ </div>
