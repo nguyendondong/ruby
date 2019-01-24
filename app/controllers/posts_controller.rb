@@ -1,14 +1,15 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+
  
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(5)
     authorize @posts
     if current_user && current_user.admin?
-      render 'users/admin'
+      render 'posts/admin'
   
     if current_user && current_user.guest?
         render 'posts/index'  
@@ -56,7 +57,7 @@ class PostsController < ApplicationController
   def update
     authorize @post
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(update_post_params)
         format.html { redirect_to @post, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -76,15 +77,6 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-    def DEL
-     @post.avatars.destroy
-     authorize @post
-      respond_to do |format|
-        format.html {redirect_to avatars_url(img), notice: 'Item photo was successfully deleted.'}
-        format.json { head :no_content }
-      end
-    end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -94,6 +86,12 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:user_id,:title, :body , {avatars: [] })
+    end
+    def update_post_params
+      params.require(:post).permit(:title, :body , {avatars: [] })
+    end
+    def image_post_params
+      params.require(:post).permit(:avatars)
     end
 
 end

@@ -13,14 +13,14 @@ class PostPolicy < ApplicationPolicy
             return true
         end
     end
+
     def create?
         user.present?
     end
 
     def edit?
-        if user.present? && user == post.user
-            return true
-        end  
+        return true if user.present? && user.admin?  
+        user.present? && user == post.user
     end
 
     def update?

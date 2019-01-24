@@ -2,8 +2,9 @@
 
 <%= render 'form', post: @post %>
 <label>IMG:</label>
-<% @post.avatars.each do |a| %>
+<% @post.avatars.each_with_index do |a,index| %>
  <%= image_tag  a.url.to_s, style: "max-width: 400px; max-height: 400px"  %>
+ <%= link_to "Destroy", post_avatar_path(@post,index), method: :delete %>
  <%end%>
 <br>
 <%= link_to 'Show', @post %> |

@@ -14,7 +14,7 @@
 <p id="notice"><%= notice %></p>
 <div class="container h-100  ">
 <h3>Publish your passions, your way</h3>
-<p class="color-p">Create a unique and beautiful blog. It’s easy and free.
+<p class="color-p"> Create a unique and beautiful blog. It’s easy and free.
 </p>
 <%if policy(Post).new? %>
 <button type="button" class="btn btn-info text-white"><%= link_to 'New Post', new_post_path %></button>
@@ -29,13 +29,15 @@
   <li class="list-group-item">
   <label for="comment">Title </label> <%= post.title %></li>
   <li class="list-group-item">
-  <div class="form-group">
-  <label for="comment">Body:</label>
-     <%= post.body %>
-</div></li>
+    <div class="form-group">
+    <label for="comment">Body:</label>
+      <%= post.body %>
+    </div>
+  </li>
 <li class="list-group-item">
   <div class="form-group">
   <label for="comment">IMG:</label>
+  <%=image_tag post.avatars.first.url if post.avatars?%>
 </div></li>
 <li class="list-group-item ">
 <button type="button" class="btn btn-warning"> <%= link_to 'Show', post if policy(post).show? %></button>
@@ -45,6 +47,7 @@
 </li>
   <% end %>
 </ul>
+<%= paginate @posts, theme: 'twitter-bootstrap-3' %>
 </div>
 </div>
 </div>

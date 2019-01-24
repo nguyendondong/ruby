@@ -5,9 +5,18 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    a{
-        color: white;
+
+    .pagination {
+        justify-content: center;
+        .page{
+            a{
+                padding: 10px;
+                line-height: 15px;
+            }
+        }
+        
     }
+    
    
 }
 #page{

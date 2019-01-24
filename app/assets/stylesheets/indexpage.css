@@ -7,8 +7,15 @@
   position: relative;
 }
 
-#indexpage a {
-  color: white;
+#indexpage .pagination {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#indexpage .pagination .page a {
+  padding: 10px;
+  line-height: 15px;
 }
 
 #page {

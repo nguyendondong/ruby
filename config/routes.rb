@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    resources :avatars, :only => [:create, :destroy]
+  end
   devise_for :users
   root "posts#index"
   # root "users#admin"
