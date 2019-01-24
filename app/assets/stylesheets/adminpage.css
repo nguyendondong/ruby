@@ -6,4 +6,16 @@
 #adminpage a {
   color: white;
 }
+
+#adminpage ul {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#adminpage ul li a {
+  padding: 10px;
+  line-height: 15px;
+  color: black;
+}
 /*# sourceMappingURL=adminpage.css.map */

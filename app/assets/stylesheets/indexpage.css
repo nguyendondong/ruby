@@ -7,15 +7,16 @@
   position: relative;
 }
 
-#indexpage .pagination {
+#indexpage ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-#indexpage .pagination .page a {
+#indexpage ul li a {
   padding: 10px;
   line-height: 15px;
+  color: black;
 }
 
 #page {

@@ -6,16 +6,16 @@
     background-repeat: no-repeat;
     position: relative;
 
-    .pagination {
+    ul{
         justify-content: center;
-        .page{
-            a{
-                padding: 10px;
-                line-height: 15px;
-            }
-        }
-        
-    }
+       li{
+           a{
+              padding: 10px;
+              line-height: 15px;
+              color: black;
+           }
+       }
+   }
     
    
 }

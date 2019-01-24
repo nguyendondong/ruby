@@ -5,5 +5,15 @@
     a{
         color: white ;
     }
+     ul{
+          justify-content: center;
+         li{
+             a{
+                padding: 10px;
+                line-height: 15px;
+                color: black;
+             }
+         };
+     }
 }
  
