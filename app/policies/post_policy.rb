@@ -3,7 +3,7 @@ class PostPolicy < ApplicationPolicy
         true
     end
     def new?
-        user.present?
+        user.present?&&user.admin?
     end
     def show?
         true
@@ -15,12 +15,12 @@ class PostPolicy < ApplicationPolicy
     end
 
     def create?
-        user.present?
+        user.present?&& user.admin?
     end
 
     def edit?
         return true if user.present? && user.admin?  
-        user.present? && user == post.user
+       
     end
 
     def update?

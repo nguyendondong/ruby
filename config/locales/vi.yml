@@ -1,0 +1,17 @@
+vi:
+  index:
+      Admin View: ' Giao Diện Người Quản Trị'
+      English: 'Tiếng Anh'
+      User ID: 'Người dùng'
+      Post ID	: 'Bài viết ID'
+      Body: 'Giá'
+      Title: 'Thông tin'
+      Action: 'Hành động'
+      Show: 'Hiển Thị'
+      Edit: 'Sửa'
+      Destroy: 'Xóa'
+      New Post: 'Bài mới'
+      IMG: 'Hình Ảnh'
+      View: 'Giao diện'
+      Editing Post: ' Chỉnh Sửa Bài Viết'
+      Admin : ' Người Quản Trị'

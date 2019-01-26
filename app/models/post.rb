@@ -5,4 +5,5 @@ class Post < ApplicationRecord
     has_many:itemphotos
     mount_uploaders :avatars, AvatarUploader
    
+   
 end

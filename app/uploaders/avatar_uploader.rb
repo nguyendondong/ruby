@@ -6,6 +6,13 @@ class AvatarUploader < CarrierWave::Uploader::Base
   version :thumb do
     process resize_to_fill: [200,200]
   end
+  def marked_for_destruction?
+    @marked_for_destruction
+  end
+
+  def mark_for_destruction
+    @marked_for_destruction = true
+  end
 
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

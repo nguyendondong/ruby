@@ -17,32 +17,32 @@
 <p class="color-p"> Create a unique and beautiful blog. It’s easy and free.
 </p>
 <%if policy(Post).new? %>
-<button type="button" class="btn btn-info text-white"><%= link_to 'New Post', new_post_path %></button>
+<button type="button" class="btn btn-info text-white"><%= link_to t('index.New Post'), new_post_path %></button>
 <%end%>
 <div class="row">
 <div class= "col-12">
 <ul class="list-group list-group-flush">
 <% @posts.each do |post| %> 
   <li class="list-group-item ">
-  <label for="comment">User ID: </label> 
+  <label for="comment"><%= t ("index.User ID") %></label> 
     <%= post.user_id %></li>
   <li class="list-group-item">
-  <label for="comment">Title </label> <%= post.title %></li>
+  <label for="comment"><%= t ("index.Title") %></label> <%= post.title %></li>
   <li class="list-group-item">
     <div class="form-group">
-    <label for="comment">Body:</label>
+    <label for="comment"><%= t ("index.Body") %></label>
       <%= post.body %>
     </div>
   </li>
 <li class="list-group-item">
   <div class="form-group">
-  <label for="comment">IMG:</label>
+  <label for="comment"><%= t ("index.IMG") %></label>
   <%=image_tag post.avatars.first.url if post.avatars?%>
 </div></li>
 <li class="list-group-item ">
-<button type="button" class="btn btn-warning"> <%= link_to 'Show', post if policy(post).show? %></button>
+<button type="button" class="btn btn-warning"> <%= link_to   t('index.Show'), post if policy(post).show? %></button>
 <%if policy(post).edit? %>
-<button type="button" class="btn btn-info "><%= link_to 'Edit', edit_post_path(post) %></button>
+<button type="button" class="btn btn-info "><%= link_to t('index.Edit'), edit_post_path(post) %></button>
 <%end%>
 </li>
   <% end %>

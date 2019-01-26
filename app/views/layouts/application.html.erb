@@ -16,7 +16,7 @@
   <div class="head-area">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="http://localhost:3000">
           <img src="http://eventsnorthern.files.wordpress.com/2011/09/blog-icon-200.png">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -25,17 +25,19 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul class="navbar-nav ">
+          <% if user_signed_in?%>
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Home
+                <%= current_user.username %>
               </a>
               <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
+                <%= link_to t("index.Edit"), edit_user_registration_path,:class =>"dropdown-item "  %>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
             </li>
+            <% end%>
             <li class="nav-item active  text-uppercase ">
               <a class="nav-link" href="#FEATURES">FEATURES</a>
             </li>
@@ -44,7 +46,6 @@
             </li>
             <li class="nav-item active   text-white">
               <% if user_signed_in?%>
-              <%= current_user.id %>
 
               <%= link_to "Log Out" , destroy_user_session_path, method: :delete, :class=>"btn btn-primary btn-lg active text-uppercase" %>
               <% else %>
@@ -60,6 +61,11 @@
 
   </div>
 </section>
+<div>
+
+    <%= link_to_unless_current  "English", locale: "en" %><br>
+    <%= link_to_unless_current "Vietnamese", locale: "vi" %><br>
+  </div>
 
 <%= yield %>
 
