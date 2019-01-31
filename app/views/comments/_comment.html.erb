@@ -1,0 +1,11 @@
+<% if @comments == nil %>
+    <p>Have no comment for this blog</p>
+<% else %>
+<% @comments.each do |comment|%>
+<%= comment.name  if comment.name?%>
+<%= comment.content if comment.content?%>
+<br>
+<%= time_ago_in_words(comment.created_at) %>
+<br>
+<% end%>
+ <% end%>

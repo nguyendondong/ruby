@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+
  
 
   # GET /posts
@@ -13,14 +14,22 @@ class PostsController < ApplicationController
   
     if current_user && current_user.guest?
         render 'posts/index'  
+    end
+    end
   end
-  end
+
+  
+
+  def comment
+    authorize @post
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comments = Comment.all
     authorize @post
+    
 
   end
 
@@ -47,7 +56,7 @@ class PostsController < ApplicationController
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { rendder json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +68,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update(update_post_params)
         format.html { redirect_to @post, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
+        format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }

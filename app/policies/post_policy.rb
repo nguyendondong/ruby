@@ -27,6 +27,11 @@ class PostPolicy < ApplicationPolicy
         return true if user.present? && user.admin?  
         user.present? && user == post.user
     end
+    def comment?
+        true
+    end
+    
+
     private
     def post
         record

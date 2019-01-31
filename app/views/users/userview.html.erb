@@ -1,0 +1,56 @@
+<div id="adminpage"
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <title>Admin</title>
+    <button type="button" class="btn btn-danger"><%= link_to "Back",posts_path %></button>
+  </head>
+  <body>
+    <div class="container pad-t">
+  <h2><%=t("index.User View")%></h2>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th><%=t("index.User ID") %></th>
+        <th><%=t("index.User Role") %></th>
+        <th><%=t("index.User Name") %></th>
+        <th><%=t("index.Email") %></th>
+        <th><%=t("index.avatar") %></th>
+        <th  colspan="3" ><%=t("index.Action") %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.role %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%=image_tag user.avatar.url ,style:"width:100px" if user.avatar? %></td>
+          <td><button type="button" class="btn btn-warning"><%= link_to t('index.Edit'), edit_user_path(user) %> </td>
+          <td><button type="button" class="btn btn-danger"><%= link_to t('index.Destroy'),user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= paginate @users, theme: 'twitter-bootstrap-3' %>
+</div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+</div>

@@ -1,0 +1,23 @@
+<div class="showpage">
+<p id="notice"><%= notice %></p>
+<ul class="list-group list-group-flush  " >
+<li class="list-group-item ">
+<label for="comment">User Name:  <%= @user.username %> </label> </li>
+<li class="list-group-item">
+<label for="comment">Email : <%= @user.email %> </label></li>
+<li class="list-group-item">
+<div class="form-group">
+<label for="comment">User Role: <%= @user.role %></label>
+ </div></li>
+ <li class="list-group-item">
+ <div class="form-group">
+<label>avatar:</label>
+<%=image_tag @user.avatar.url ,style:"width:500px" if @user.avatar? %>
+ </div>
+ </li>
+</ul>
+ <%if policy(@user).edit?%>
+ <button type="button" class="btn btn-danger "><%= link_to 'Edit', edit_user_path(@user) %> </button> 
+ <% end %>
+ <button type="button" class="btn btn-danger"><%= link_to 'Back', userview_path %></button>
+ </div>

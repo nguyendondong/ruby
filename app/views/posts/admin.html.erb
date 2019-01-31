@@ -1,66 +1,97 @@
-<div id="adminpage"
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<div id="adminpage" <!doctype html>
+    <html lang="en">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Admin</title>
-  </head>
-  <body>
-    <div class="container pad-t">
-  <h2><%=t("index.Admin View")%></h2>
-  <table class="table text-center">
-    <thead>
-      <tr>
-        <th><%=t("index.User ID") %></th>
-        <th><%=t("index.Post ID") %></th>
-        <th><%=t("index.Body") %></th>
-        <th><%=t("index.Title") %></th>
-        <th  colspan="3" ><%=t("index.Action") %></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @posts.each do |post| %>
-        <% if !post.user.admin? || post.user == current_user %>
-        <tr>
-          <td><%= post.user_id %></td>
-          <td><%= post.id %></td>
-          <td><%= post.body %></td>
-          <td><%= post.title %></td>
-          <td><button type="button" class="btn btn-warning"><%= link_to t('index.Show'), post if policy(post).show? %> </button></td>
-          <%if policy(post).edit? %>
-          <td><button type="button" class="btn btn-warning"><%= link_to t('index.Edit'), edit_post_path(post)  %> </button></td>
-          <% end %>
-          <% if policy(post).destroy? %>
-          <td><button type="button" class="btn btn-danger"><%= link_to t('index.Destroy'), post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-  <%if policy(Post).new? %>
-  <button type="button" class="btn btn-info text-white"><%= link_to t('index.New Post'), new_post_path %></button>
-  <%end%>
-  <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
-  <p><b>I18n.locale:</b>
-<%= I18n.locale %>
-</p>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <title>Admin</title>
+    </head>
+
+    <body>
+        <div class="container pad-t">
+            <h2>
+                <%=t("index.Admin View")%>
+            </h2>
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>
+                            <%=t("index.User ID") %>
+                        </th>
+                        <th>
+                            <%=t("index.Post ID") %>
+                        </th>
+                        <th>
+                            <%=t("index.Body") %>
+                        </th>
+                        <th>
+                            <%=t("index.Title") %>
+                        </th>
+                        <th colspan="3">
+                            <%=t("index.Action") %>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @posts.each do |post| %>
+
+                    <tr>
+                        <td>
+                            <%= post.user_id %>
+                        </td>
+                        <td>
+                            <%= post.id %>
+                        </td>
+                        <td>
+                            <%= post.body %>
+                        </td>
+                        <td>
+                            <%= post.title %>
+                        </td>
+                        <td><button type="button" class="btn btn-warning">
+                                <%= link_to t('index.Show'), post if policy(post).show? %> </button></td>
+                        <%if policy(post).edit? %>
+                        <td><button type="button" class="btn btn-warning">
+                                <%= link_to t('index.Edit'), edit_post_path(post)  %> </button></td>
+                        <% end %>
+                        <% if policy(post).destroy? %>
+                        <td><button type="button" class="btn btn-danger">
+                                <%= link_to t('index.Destroy'), post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </td>
+                        <% end %>
+                    </tr>
+                    <% end %>
+
+                </tbody>
+            </table>
+            <%if policy(Post).new? %>
+            <button type="button" class="btn btn-info text-white">
+                <%= link_to t('index.New Post'), new_post_path %></button>
+            <%end%>
+            <a href="http://localhost:3000/userview" type="button" class="btn btn-info text-white"> User View </a>
+            <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+            <p><b>I18n.locale:</b>
+                <%= I18n.locale %>
+            </p>
+        </div>
 </div>
-</div>
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
 </div>

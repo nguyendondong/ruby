@@ -1,0 +1,6 @@
+$('.ajax-form-create').html('<%= j render "comments/comment_form",
+      post: @post, comment: @comment,
+      button_name: t("post.comment.comment") %>');
+# đoạn ajax 2
+  $('.div-create').html('<%= j render "post_rates/comments",
+      comments: @post.comments.desc %>').appendTo('.div-create');

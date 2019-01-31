@@ -14,14 +14,20 @@
  <li class="list-group-item">
  <div class="form-group">
 <label>IMG:</label>
+<div class ="row">
 <% @post.avatars.each do |a| %>
- <%= image_tag  a.url.to_s, style: "max-width: 400px; max-height: 400px"  %>
- 
+        <div class="col-3 ">
+ <%= image_tag  a.url.to_s, style: "width:100%"  %>
+    </div>
  <%end%>
  </div>
+ </div>
  </li>
-
 </ul>
+<h3><%= @post.comments.count%> comments</h3>
+  <%= render 'comments/form',comment:@comment %>
+  <%=render 'comments/comment',comment:@comment%>
+  <br>
  <%if policy(@post).edit?%>
  <button type="button" class="btn btn-danger "><%= link_to 'Edit', edit_post_path(@post) %> </button> 
  <% end %>

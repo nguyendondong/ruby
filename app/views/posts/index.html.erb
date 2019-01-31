@@ -1,56 +1,70 @@
 <div id="indexpage">
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!doctype html>
+    <html lang="en">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Admin</title>
-  </head>
-<p id="notice"><%= notice %></p>
-<div class="container h-100  ">
-<h3>Publish your passions, your way</h3>
-<p class="color-p"> Create a unique and beautiful blog. It’s easy and free.
-</p>
-<%if policy(Post).new? %>
-<button type="button" class="btn btn-info text-white"><%= link_to t('index.New Post'), new_post_path %></button>
-<%end%>
-<div class="row">
-<div class= "col-12">
-<ul class="list-group list-group-flush">
-<% @posts.each do |post| %> 
-  <li class="list-group-item ">
-  <label for="comment"><%= t ("index.User ID") %></label> 
-    <%= post.user_id %></li>
-  <li class="list-group-item">
-  <label for="comment"><%= t ("index.Title") %></label> <%= post.title %></li>
-  <li class="list-group-item">
-    <div class="form-group">
-    <label for="comment"><%= t ("index.Body") %></label>
-      <%= post.body %>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <title>Admin</title>
+    </head>
+    <p id="notice">
+        <%= notice %>
+    </p>
+    <div class="container h-100  ">
+        <h3>Publish your passions, your way</h3>
+        <p class="color-p"> Create a unique and beautiful blog. It’s easy and free.
+        </p>
+        <%if policy(Post).new? %>
+        <button type="button" class="btn btn-info text-white">
+            <%= link_to t('index.New Post'), new_post_path %></button>
+        <%end%>
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-group list-group-flush">
+                    <% @posts.each do |post| %>
+                    <li class="list-group-item ">
+                        <label>
+                            <%= t ("index.User ID") %></label>
+                        <%= post.user_id %>
+                    </li>
+                    <li class="list-group-item">
+                        <label>
+                            <%= t ("index.Title") %></label>
+                        <%= post.title %>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <label>
+                                <%= t ("index.Body") %></label>
+                            <%= post.body %>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <label>
+                                <%= t ("index.IMG") %></label>
+                            <%=image_tag post.avatars.first.url if post.avatars?%>
+                        </div>
+                    </li>
+                    <li class="list-group-item ">
+                        <button type="button" class="btn btn-warning">
+                            <%= link_to   t('index.Show'), post if policy(post).show? %></button>
+                        <%if policy(post).edit? %>
+                        <button type="button" class="btn btn-info ">
+                            <%= link_to t('index.Edit'), edit_post_path(post) %></button>
+                        <%end%>
+                    </li>
+                    <% end %>
+                </ul>
+                <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+            </div>
+        </div>
     </div>
-  </li>
-<li class="list-group-item">
-  <div class="form-group">
-  <label for="comment"><%= t ("index.IMG") %></label>
-  <%=image_tag post.avatars.first.url if post.avatars?%>
-</div></li>
-<li class="list-group-item ">
-<button type="button" class="btn btn-warning"> <%= link_to   t('index.Show'), post if policy(post).show? %></button>
-<%if policy(post).edit? %>
-<button type="button" class="btn btn-info "><%= link_to t('index.Edit'), edit_post_path(post) %></button>
-<%end%>
-</li>
-  <% end %>
-</ul>
-<%= paginate @posts, theme: 'twitter-bootstrap-3' %>
-</div>
-</div>
-</div>
-</html>
-</div>
 
+    </html>
+</div>
