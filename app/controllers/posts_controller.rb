@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @comments = Comment.all
+    @comments =@post.comments
     authorize @post
     
 

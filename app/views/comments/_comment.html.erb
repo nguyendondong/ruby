@@ -1,11 +1,13 @@
-<% if @comments == nil %>
+
+<% if @post.comments.count == 0 %>
     <p>Have no comment for this blog</p>
 <% else %>
-<% @comments.each do |comment|%>
-<%= comment.name  if comment.name?%>
-<%= comment.content if comment.content?%>
-<br>
-<%= time_ago_in_words(comment.created_at) %>
-<br>
+<% @post.comments.each do |comment| %>
+        <%= comment.name  if comment.name?%><br>
+        <%= comment.content if comment.content?%>
+        <%= link_to t('Delete'),[comment.post, comment],remote: false, method: :delete, data: { confirm: 'Are you sure?' } if comment.content?  %>
+        <%= link_to ('Edit'),edit_post_comment_path(comment.post, comment),remote: false if comment.content?%>
+        <%= time_ago_in_words(comment.created_at) if comment.content? %>
+        <% end%>   
 <% end%>
- <% end%>
+

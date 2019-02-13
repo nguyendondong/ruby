@@ -1,6 +1,6 @@
-class CommentsPolicy < ApplicationPolicy
-    def index?
-      user.present? || user.admin?
+class CommentPolicy < ApplicationPolicy
+      def index?
+      true
       end
       def new?
         true
@@ -11,9 +11,11 @@ class CommentsPolicy < ApplicationPolicy
       end
     
       def destroy?
-        user.present? || user.admin?
+        true
       end
-    
+      def edit?
+        user.present?
+      end
       def update?
         user.present? || user.admin?
       end

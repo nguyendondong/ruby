@@ -1,6 +1,8 @@
 <div class="showpage">
+<div class ="container text-left"
 <p id="notice"><%= notice %></p>
-
+<div class = "row">
+<div class="col-6">
 <ul class="list-group list-group-flush  " >
 <li class="list-group-item ">
 <label for="comment">User ID:  <%= @post.user_id %> </label> </li>
@@ -11,25 +13,31 @@
 <label for="comment">Body:</label>
  <%= @post.body %>
  </div></li>
- <li class="list-group-item">
- <div class="form-group">
-<label>IMG:</label>
-<div class ="row">
+ </ul>
+ </div>
+ <div class="col-6 pad-b">
+ <%= image_tag  @post.avatars.first.url.to_s, style: "width:100%"  %>
+ <div class ="row pad-t">
 <% @post.avatars.each do |a| %>
-        <div class="col-3 ">
+        <div class="col-3  pad-t">
  <%= image_tag  a.url.to_s, style: "width:100%"  %>
     </div>
  <%end%>
  </div>
  </div>
- </li>
-</ul>
+</div>
 <h3><%= @post.comments.count%> comments</h3>
+<div id="ajax-form-create">
   <%= render 'comments/form',comment:@comment %>
-  <%=render 'comments/comment',comment:@comment%>
+</div>
+<div id="div-create">
+  <%=render 'comments/comment',comments:@post.comments%>
+</div>
   <br>
  <%if policy(@post).edit?%>
  <button type="button" class="btn btn-danger "><%= link_to 'Edit', edit_post_path(@post) %> </button> 
  <% end %>
  <button type="button" class="btn btn-danger"><%= link_to 'Back', posts_path %></button>
+ </div>
+ </div>
  </div>
