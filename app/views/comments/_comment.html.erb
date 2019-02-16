@@ -3,11 +3,12 @@
     <p>Have no comment for this blog</p>
 <% else %>
 <% @post.comments.each do |comment| %>
+    <div  id="comment_<%= comment.id %>">
         <%= comment.name  if comment.name?%><br>
         <%= comment.content if comment.content?%>
-        <%= link_to t('Delete'),[comment.post, comment],remote: false, method: :delete, data: { confirm: 'Are you sure?' } if comment.content?  %>
-        <%= link_to ('Edit'),edit_post_comment_path(comment.post, comment),remote: false if comment.content?%>
-        <%= time_ago_in_words(comment.created_at) if comment.content? %>
+        <%= link_to t('Delete'),[comment.post, comment], remote: true, method: :delete, data: { confirm: 'Are you sure?'} if comment.content?  %>
+        <%= link_to 'Edit', edit_post_comment_path(comment.post,comment), class: "pull-right text-right", remote: false if comment.content? %>
+        <%= time_ago_in_words(comment.created_at) if comment.content? %><br>
         <% end%>   
 <% end%>
-
+<div class="clearfix"></div>

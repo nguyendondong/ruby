@@ -27,38 +27,42 @@
             <div class="col-12">
                 <ul class="list-group list-group-flush">
                     <% @posts.each do |post| %>
-                    <li class="list-group-item ">
-                        <label>
-                            <%= t ("index.User ID") %></label>
-                        <%= post.user_id %>
-                    </li>
-                    <li class="list-group-item">
-                        <label>
-                            <%= t ("index.Title") %></label>
-                        <%= post.title %>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="form-group">
-                            <label>
-                                <%= t ("index.Body") %></label>
-                            <%= post.body %>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="form-group">
-                            <label>
-                                <%= t ("index.IMG") %></label>
-                            <%=image_tag post.avatars.first.url if post.avatars?%>
-                        </div>
-                    </li>
-                    <li class="list-group-item ">
-                        <button type="button" class="btn btn-warning">
-                            <%= link_to   t('index.Show'), post if policy(post).show? %></button>
-                        <%if policy(post).edit? %>
-                        <button type="button" class="btn btn-info ">
-                            <%= link_to t('index.Edit'), edit_post_path(post) %></button>
-                        <%end%>
-                    </li>
+                        <div  id="post_<%= post.id %>" >
+                            <li class="list-group-item">
+                                <label>
+                                    <%= t ("index.Title") %></label>
+                                <%= post.title %>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-group">
+                                    <label>
+                                        <%= t ("index.Body") %></label>
+                                    <%= post.body %>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-group">
+                                    <label>
+                                        <%= t ("index.IMG") %></label>
+                                    <%=image_tag post.avatars.first.url if post.avatars?%>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-group">
+                                    <label>
+                                       <h6> <%= t("index.comment :  ") %> <%= post.comments.count%></h6></label>
+                                
+                                </div>
+                            </li>
+                            <li class="list-group-item ">
+                                <button type="button" class="btn btn-warning">
+                                    <%= link_to   t('index.Show'), post if policy(post).show? %></button>
+                                <%if policy(post).edit? %>
+                                <button type="button" class="btn btn-info ">
+                                    <%= link_to t('index.Edit'), edit_post_path(post) %></button>
+                                <%end%>
+                            </li>
+                         </div>
                     <% end %>
                 </ul>
                 <%= paginate @posts, theme: 'twitter-bootstrap-3' %>

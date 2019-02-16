@@ -1,17 +1,2 @@
- # đoạn ajax  1
- $('#ajax-form-create').html('<%= j render "comments/form", comment: @comment %>');
-# đoạn ajax 2
-$('#div-create').html('<%= j render "comments/comment",
- comments: @post.comments %>').appendTo('#div-create');
 
-
-
- $(document).ready(function(){
-  $("#create").click(function(){
-    $("submit").append(" <b>Appended text</b>.");
-  });
-
-  $("#btn2").click(function(){
-    $("ol").append("<li>Appended item</li>");
-  });
-});
+ $('#creat').html('<%= j render @comment, comment: @comment %>');

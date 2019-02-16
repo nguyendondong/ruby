@@ -73,7 +73,8 @@
             <button type="button" class="btn btn-info text-white">
                 <%= link_to t('index.New Post'), new_post_path %></button>
             <%end%>
-            <a href="http://localhost:3000/userview" type="button" class="btn btn-info text-white"> User View </a>
+            <button type="button" class="btn btn-info text-white">
+            <%= link_to t('index.List User'), userview_path %></button>
             <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
             <p><b>I18n.locale:</b>
                 <%= I18n.locale %>

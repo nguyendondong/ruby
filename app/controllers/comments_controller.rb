@@ -6,10 +6,7 @@ class CommentsController < ApplicationController
       @comments=Post.comment.all
       authorize @comments
     end
-  def edit
-    @comment=Comment.find(params[:id])
-      authorize @comment
-  end
+ 
   def new
         @comment = @post.comments.build
         authorize @comment
@@ -26,21 +23,21 @@ class CommentsController < ApplicationController
         @comment.name = nil
 
       end
-      if @comment.save
+      @comment.save
       respond_to do |format|
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-        format.js { render layout: false }
-      end
-      else
-        format.html {  redirect_to new_post_comment_path }
-        format.json { rendder json: @comment.errors, status: :unprocessable_entity }
         format.js { render layout: false }
     end
   end
-  def update
+  def edit
+    
     @comment=Comment.find(params[:id])
     authorize @comment
+  end
+
+
+  def update
+    @comment=Comment.find(params[:id])
     respond_to do |format|
       if @comment.update(update_comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
