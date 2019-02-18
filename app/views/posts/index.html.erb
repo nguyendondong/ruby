@@ -23,7 +23,7 @@
         <button type="button" class="btn btn-info text-white">
             <%= link_to t('index.New Post'), new_post_path %></button>
         <%end%>
-        <div class="row">
+        <div class="row" id="posts">
             <div class="col-12">
                 <ul class="list-group list-group-flush">
                     <% @posts.each do |post| %>

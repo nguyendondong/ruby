@@ -1,1 +1,1 @@
-$(<%= j render 'comments/form', comment: @comment %>).appendTo("#comment_<%= @comment.id %>");
+$('#edit-comment').html(<%= j render 'comments/edit', comment: @comment %>).appendTo("#comment_<%= @comment.id %>");

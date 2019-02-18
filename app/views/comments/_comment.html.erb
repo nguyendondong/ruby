@@ -1,14 +1,19 @@
-
+<div class="clearfix">
 <% if @post.comments.count == 0 %>
     <p>Have no comment for this blog</p>
 <% else %>
 <% @post.comments.each do |comment| %>
-    <div  id="comment_<%= comment.id %>">
-        <%= comment.name  if comment.name?%><br>
+    <div id="comment_<%= comment.id %>" class="row single-comment vertical-align">
+        <div class ="col-8 text-left">
+        <h5><%= comment.name  if comment.name?%></h5> 
         <%= comment.content if comment.content?%>
-        <%= link_to t('Delete'),[comment.post, comment], remote: true, method: :delete, data: { confirm: 'Are you sure?'} if comment.content?  %>
-        <%= link_to 'Edit', edit_post_comment_path(comment.post,comment), class: "pull-right text-right", remote: false if comment.content? %>
-        <%= time_ago_in_words(comment.created_at) if comment.content? %><br>
-        <% end%>   
+        <%= link_to t('Delete'),[comment.post, comment], remote: true, method: :delete, data: { confirm: 'Are you sure?'} if policy(comment).destroy? && comment.content?   %>
+        <br>
+        <%= time_ago_in_words(comment.created_at) if comment.content? %>
+        </div>
+    </div>
+      
 <% end%>
-<div class="clearfix"></div>
+
+<% end%>
+</div>

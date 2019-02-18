@@ -11,7 +11,8 @@ class CommentPolicy < ApplicationPolicy
       end
     
       def destroy?
-        true
+        return true if user.present? && user.admin?  
+        user.present? && user == comment.user
       end
       def edit?
         user.present?
@@ -19,7 +20,9 @@ class CommentPolicy < ApplicationPolicy
       def update?
         user.present? || user.admin?
       end
-      def comment?
-        true
+      
+    private
+    def comment
+        record
     end
 end
